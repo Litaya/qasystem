@@ -1,4 +1,4 @@
-from src.vecModel.BaikeModel import BaikeVecModel
+from vecModel.BaikeModel import BaikeVecModel
 
 model = BaikeVecModel()
 word_num, vec_size = model.getDataSize()

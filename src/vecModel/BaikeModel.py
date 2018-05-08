@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath('../'))
+print(sys.path)
 from Config import Config
 from src.Helper.BinaryReader import BinaryReader
 
@@ -5,7 +9,7 @@ from src.Helper.BinaryReader import BinaryReader
 class BaikeVecModel:
 
     def __init__(self):
-        self.data_path = Config.getRootPath() + 'data/' + 'vectors_word'
+        self.data_path = Config.getRootPath() + 'data/' + 'vectors/vectors_word'
         self.file = open(self.data_path, 'rb')
         self.words_num = int(BinaryReader.readStringWithoutBlank(self.file))
         self.vec_size  = int(BinaryReader.readStringWithoutBlank(self.file))
