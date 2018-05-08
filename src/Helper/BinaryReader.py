@@ -27,7 +27,7 @@ class BinaryReader:
                     break
                 seq += b
                 b = f.read(1)
-            print(seq)
+            # print(seq)
             return bytes.decode(seq)
         except EOFError:
             pass
