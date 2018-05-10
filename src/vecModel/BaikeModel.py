@@ -1,7 +1,3 @@
-import sys
-import os
-sys.path.append(os.path.abspath('../'))
-print(sys.path)
 from Config import Config
 from src.Helper.BinaryReader import BinaryReader
 import time
@@ -57,12 +53,13 @@ class BaikeVecModel:
                 if word != '':
                     self.vectors[word] = vec
                     counter += 1
-                    if counter %10000 == 0:
+                    if counter %100000 == 0:
                         print("已加载 "+str(counter) + " 个vector")
                 else:
                     break
             end_time = time.time()
-            print('\n加载结束, 期望加载 ' + str(self.words_num) + ' 条数据， 实际加载 ' + str(counter) + '条,共耗时 '+ str(int(end_time - start_time)) + ' s')
+            print('\n加载结束, 期望加载 ' + str(self.words_num) + ' 条数据， 实际加载 ' + str(counter) + ' 条,共耗时 '+ str(int(end_time - start_time)) + ' s')
+            return self.vectors
         except EnvironmentError:
             pass
 
