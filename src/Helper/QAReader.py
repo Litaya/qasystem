@@ -48,7 +48,7 @@ class QAReader:
             if res and res[0] !='' :
                 qa_pairs.append([res[0], res[1]])
             else:
-                print("共加载 "+str(counter)+" 条 question-answer pair")
+                print("\n共加载 "+str(counter)+" 条 question-answer pair")
                 break
         return qa_pairs
 
