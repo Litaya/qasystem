@@ -8,7 +8,7 @@ class KBReader:
         file = open(Config.getRootPath() + 'data/kb/KB-original/kbqa.kb', encoding='utf-8')
         entity_name = ''
         entity = {}
-        entities = []
+        entities = {}
         counter = 0
         for line in file:
             line = line.strip()
@@ -17,7 +17,7 @@ class KBReader:
                 entity[line_split[1]] = line_split[2]
             else:
                 if entity_name != '':
-                    entities.append({entity_name: entity})
+                    entities[entity_name] = entity
                 counter += 1
                 entity_name = line_split[0]
                 entity = {
