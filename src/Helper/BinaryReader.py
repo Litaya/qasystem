@@ -9,7 +9,7 @@ class BinaryReader:
             seq = bytes()
             b = f.read(1)
             while 1:
-                if b == b' ' or b == b'\n' or b == b'\t':
+                if b == b' ' or b == b'\n' or b == b'\t' or b == b'':
                     break
                 seq += b
                 b = f.read(1)
@@ -23,7 +23,7 @@ class BinaryReader:
             seq = bytes()
             b = f.read(1)
             while 1:
-                if b == b'\t' or b == b'\n':
+                if b == b'\t' or b == b'\n' or b == b'':
                     break
                 seq += b
                 b = f.read(1)
@@ -37,5 +37,5 @@ class BinaryReader:
         try:
             b = f.read(4)
             return struct.unpack('f', b)[0]
-        except EOFError:
+        except:
             pass
