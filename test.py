@@ -33,17 +33,23 @@ for q, a in pairs:
         matched += 1
         entity_name, attribute = res[0], res[1]
         if kb.get(entity_name):
-            entity = Entity(kb[entity_name])
-            answer_res = entity.getAnswer(attribute, word_embeddings)
-            if answer_res:
-                print(q)
-                print(entity_name,attribute,answer_res)
-                right += 1
-            else:
-                encoder = json.JSONEncoder()
-                no_answer_file.write("\n【问题】"+q+"\n【实体】"+entity_name+"\n【目标属性】"+attribute+"\n【实体信息】"+encoder.encode(entity.entity)+"\n")
+            entity = kb[entity_name]
+            entity_obj = Entity(entity)
+            answer_res = entity_obj.getAnswer(attribute, word_embeddings)
+            # 目标匹配成功，但未找到answer
+            if not answer_res:
+                no_answer_file.write("【问题】：" + q + "\n")
+                no_answer_file.write("【抽取结果】：" + entity_name + ", " + attribute+'\n' )
+                no_answer_file.write("【匹配到的实体】: " + entity_name + "\n")
+                for attribute in entity:
+                    no_answer_file.write("\t" + attribute + "："+entity[attribute] + "\n")
+                no_answer_file.write("======================\n")
+                continue
+            print(q)
+            print(entity_name, attribute, answer_res)
+            right += 1
         else:
-            no_entity_file.write("\n【问题】"+q+"【抽取结果】"+res[0]+","+res[1]+"\n")
+            no_entity_file.write("【问题】"+q+"\n【抽取结果】"+res[0]+","+res[1]+"\n")
     else:
         unmatched_file.write(q+"\n")
 print("accuracy: "+str(float(right)/float(matched)) + "\nrecall:"+str(float(right)/float(counter)))

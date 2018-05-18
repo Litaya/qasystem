@@ -23,8 +23,8 @@ class KBReader:
                 entity = {
                     line_split[1]: line_split[2]
                 }
-            if counter % 10000 == 0:
-                print("已加载 "+str(counter)+" 个实体")
+                if counter % 100000 == 0:
+                    print("已加载 "+str(counter)+" 个实体")
         print("共加载 "+str(counter)+" 个实体")
         file.close()
         return entities
